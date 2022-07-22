@@ -1,6 +1,7 @@
 import WebTorrent from 'webtorrent-hybrid';
 import path from "node:path";
 import { spawn } from 'node:child_process';
+import addQueue from './utils.js';
 class TorClient {
     constructor() {
         this.client = new WebTorrent();
@@ -29,4 +30,4 @@ class TorClient {
     }
 }
 
-export { TorClient as WebTorClient};
+export { TorClient as WebTorClient };
