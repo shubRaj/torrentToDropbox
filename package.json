@@ -1,0 +1,11 @@
+{
+  "name": "torrent-download-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.2.9",
+    "webtorrent-hybrid": "^5.0.2"
+  }
+}
