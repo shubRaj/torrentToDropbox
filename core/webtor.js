@@ -13,15 +13,15 @@ class TorClient {
     addMagnet(magnetURI) {
         this.client.add(magnetURI, { path: this.odir, destroyStoreOnDestroy: false, storeCacheSlots: 0 }, async (torrent) => {
             console.log('Client is downloading:', torrent.infoHash);
-            torrent.on("error", () => {
+            torrent.on("error", async () => {
                 torrent.destroy();
                 await addQueue();
             })
-            torrent.on('noPeers', () => {
+            torrent.on('noPeers', async () => {
                 torrent.destroy();
                 await addQueue();
             })
-            torrent.on("done", () => {
+            torrent.on("done", async () => {
                 this.uploadToDropbox(path.join(this.odir, torrent.name));
                 torrent.destroy();
                 await addQueue();
