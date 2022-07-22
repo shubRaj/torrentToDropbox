@@ -1,6 +1,7 @@
 import dropbox
 from pathlib import Path
 import sys
+import shutil
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -48,7 +49,7 @@ def upload_dropbox(source_dir):
             destination = f"/New Movies/{path.name}/{file.relative_to(path)}"
             DPB.UpLoadFile(file, destination)
             file.unlink()
-    path.rmdir()
+    shutil.rmtree(source_dir)
 
 
 if __name__ == '__main__':

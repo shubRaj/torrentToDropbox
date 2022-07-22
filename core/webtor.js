@@ -8,7 +8,7 @@ class TorClient {
         this.odir = path.resolve("./downloads");
     }
     uploadToDropbox(sourceDIR) {
-        const pprocess = spawn("python3", ["core/dpbox.py", `${sourceDIR}`]);
+        const pprocess = spawn("python3", ["core/dpbox.py", `${sourceDIR}`,"&"]);
     }
     addMagnet(magnetURI) {
         this.client.add(magnetURI, { path: this.odir, destroyStoreOnDestroy: false, storeCacheSlots: 0 }, async (torrent) => {
