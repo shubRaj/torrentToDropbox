@@ -15,16 +15,16 @@ class TorClient {
             console.log('Client is downloading:', torrent.infoHash);
             torrent.on("error", () => {
                 torrent.destroy();
-                addQueue();
+                await addQueue();
             })
             torrent.on('noPeers', () => {
                 torrent.destroy();
-                addQueue();
+                await addQueue();
             })
             torrent.on("done", () => {
                 this.uploadToDropbox(path.join(this.odir, torrent.name));
                 torrent.destroy();
-                addQueue();
+                await addQueue();
             });
         });
     }
