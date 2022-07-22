@@ -1,5 +1,4 @@
-
-import { addQueue } from './core/webtor.js';
+import addQueue from './core/utils.js';
 
 async function main() {
     await addQueue();
