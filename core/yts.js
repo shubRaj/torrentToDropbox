@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 class YTS {
-    _BASE = "https://yts.mx/api/v2/list_movies.json?sort=seeds&limit=15&page=";
+    _BASE = "https://yts.mx/api/v2/list_movies.json?sort_by=download_count&minimum_rating=5&page=";
     constructor() {
         this._p = 1;
     }
