@@ -26,7 +26,7 @@ class TorClient {
             })
             torrent.on("done", async () => {
                 torrent.destroy();
-                const { stdout, stderr } = await execP(`python3 core/dpbox.py "${path.join(this.odir, torrent.name)}"`);
+                const { stdout, stderr } = await execP(`python3 core/dpbox.py "${path.join(this.odir, torrent.name)}"`,{maxBuffer:1024*200});
                 await addQueue();
             });
         });
