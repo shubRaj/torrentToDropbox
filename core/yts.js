@@ -14,7 +14,7 @@ class YTS {
             let json_response = await response.json();
             let movies = json_response.data.movies;
             if (movies.length == 0) return;
-            movies = movies.filter(movie => movie.year > year);
+            movies = movies.filter(movie => movie.year <= year);
             for (let movie of movies) yield movie;
             this._p++;
         }
