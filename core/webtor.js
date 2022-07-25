@@ -16,9 +16,16 @@ class TorClient {
     addMagnet(magnetURI) {
         this.client.add(magnetURI, { path: this.odir, destroyStoreOnDestroy: false, storeCacheSlots: 0 }, async (torrent) => {
             console.log(`Started downloading ${torrent.name}`);
-            torrent.on("download", (bytes) => {
+            torrent.on("download", async (bytes) => {
                 let downloadSpeed = (torrent.downloadSpeed / (1024 * 1024)).toFixed(2);
-                console.log(`Downloading ${torrent.name}\tProgress: ${torrent.progress.toFixed(2)}\tSpeed: ${downloadSpeed}\tPeers: ${torrent.numPeers}`);
+                if ((torrent.downloadSpeed == 0) && (torrent.progress > 0)) {
+                    console.log("Dead Torrent");
+                    torrent.destroy();
+                    await addQueue();
+                }
+                else {
+                    console.log(`Downloading ${torrent.name}\tProgress: ${torrent.progress.toFixed(2)}\tSpeed: ${downloadSpeed}\tPeers: ${torrent.numPeers}`);
+                }
             })
             torrent.on("error", async () => {
                 torrent.destroy();
