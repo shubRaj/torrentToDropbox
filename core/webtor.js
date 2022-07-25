@@ -18,7 +18,7 @@ class TorClient {
             console.log(`Started downloading ${torrent.name}`);
             torrent.on("download", (bytes) => {
                 let downloadSpeed = (torrent.downloadSpeed / (1024 * 1024)).toFixed(2);
-                console.log(`Downloading ${torrent.name}\tProgress: ${torrent.progress.toFixed(2)}\tSpeed: ${downloadSpeed}`);
+                console.log(`Downloading ${torrent.name}\tProgress: ${torrent.progress.toFixed(2)}\tSpeed: ${downloadSpeed}\tPeers: ${torrent.numPeers}`);
             })
             torrent.on("error", async () => {
                 torrent.destroy();
