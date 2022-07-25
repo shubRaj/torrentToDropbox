@@ -18,13 +18,14 @@ class TorClient {
             console.log(`Started downloading ${torrent.name}`);
             torrent.on("download", async (bytes) => {
                 let downloadSpeed = (torrent.downloadSpeed / (1024 * 1024)).toFixed(2);
-                if ((torrent.downloadSpeed == 0) && (torrent.progress > 0)) {
+                let progress = torrent.progress.toFixed(2);
+                if ((downloadSpeed == 0) && (progress > 0)) {
                     console.log("Dead Torrent");
                     torrent.destroy();
                     await addQueue();
                 }
                 else {
-                    console.log(`Downloading ${torrent.name}\tProgress: ${torrent.progress.toFixed(2)}\tSpeed: ${downloadSpeed}\tPeers: ${torrent.numPeers}`);
+                    console.log(`Downloading ${torrent.name}\tProgress: ${progress}\tSpeed: ${downloadSpeed}\tPeers: ${torrent.numPeers}`);
                 }
             })
             torrent.on("error", async () => {
