@@ -18,13 +18,7 @@ class TorClient {
             console.log(`Started downloading ${torrent.name}`);
             torrent.on("download", (bytes) => {
                 let downloadSpeed = (torrent.downloadSpeed / (1024 * 1024)).toFixed(2);
-                if (downloadSpeed < 0.2) {
-                    console.log(`Downloaded Aborted weak Peers Found`);
-                    torrent.destroy();
-                }
-                else {
-                    console.log(`Downloading ${torrent.name}\tProgress: ${torrent.progress.toFixed(2)}\tSpeed: ${downloadSpeed}`);
-                }
+                console.log(`Downloading ${torrent.name}\tProgress: ${torrent.progress.toFixed(2)}\tSpeed: ${downloadSpeed}`);
             })
             torrent.on("error", async () => {
                 torrent.destroy();
