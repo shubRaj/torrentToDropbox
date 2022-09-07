@@ -46,7 +46,7 @@ def upload_dropbox(source_dir):
     path = Path(source_dir)
     for file in path.glob('**/*'):
         if not file.is_dir():
-            destination = f"/New Classic Movies/{path.name}/{file.relative_to(path)}"
+            destination = f"/New Series/{path.name}/{file.relative_to(path)}"
             DPB.UpLoadFile(file, destination)
             file.unlink()
     shutil.rmtree(source_dir)
